@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="Apriori_gui.jnlp">
+  <information>
+    <title>Apriori_gui</title>
+    <vendor>Alex</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="Apriori_gui.jar" size="4721" download="eager" />
+    <jar href="lib\weka.jar" size="11143811" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Apriori_gui" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="apriori_gui.Apriori_gui"  name="Apriori_gui" />
+  <update check="always"/>
+</jnlp>
