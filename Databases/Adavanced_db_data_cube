@@ -1,0 +1,228 @@
+create table factura(
+	Id_tranzactie int not null primary key,  
+	Cheie_client int not null,  
+	Cheie_timp int not null,   
+	Cheie_vanzator int not null,  
+	Numar_produse int not null,  
+	Total_lei int not null,  
+	Nr_casa int not null
+	);
+
+create table client(
+	Cheie_client int not null primary key,  
+	Nume_client varchar(50),  
+	Prenume_client varchar(50),  
+	Card_fidelitate int not  null
+	);
+
+create table data(
+	Cheie_timp int not null primary key,  
+	Ora time not null,  	
+	Zi_din_sapt varchar(10) not null,  
+	Zi int not null,  
+	Luna int not null,  
+	Trimestru int not null,  
+	An int not null
+	);
+
+create table produs(
+	Cheie_produs int not null primary key,  
+	Nume_produs varchar(50),  
+	Categorie  varchar(2) not null,  
+	Gramaj float(5) not null,  
+	Pret_produs float(5) not null
+	);
+
+create table vanzator(
+	Cheie_vanzator int not null primary key,  
+	Nume_vanzator varchar(50) not null,  
+	Prenume_vanzator varchar(50) not null
+);
+
+create table client_produs(
+	Cheie_ID int not null primary key,  
+	Client_FK int not null,  
+	Produs_FK int not null
+);
+
+alter table factura add constraint k1 foreign key (Cheie_client) references client(Cheie_client);
+alter table factura add constraint k2 foreign key (Cheie_timp) references data(Cheie_timp);
+alter table factura add constraint k3 foreign key (Cheie_vanzator) references vanzator(Cheie_vanzator);
+
+alter table client_produs add constraint k4 foreign key (client_FK) references client(Cheie_client);
+alter table client_produs add constraint k5 foreign key (produs_FK) references produs(Cheie_produs);
+
+insert into vanzator values(1,  "Stana",  " Andreea");
+insert into vanzator values(2,  "Ianacu ",  " Sorin");
+insert into vanzator values(3,  "Mana ",  "Calina");
+insert into vanzator values(4,  "Stoic ",  "Mara");
+insert into vanzator values(5,  "Batoc ",  "Geanina");
+insert into vanzator values(6,  "Fanil ",  "Cornel");
+insert into vanzator values(7,  "Corint ",  "Elena");
+
+
+insert into client values(1,   "Aliman",   "Ana",  0);
+insert into client values(2,   "Andreescu",   "Dana",  1);
+insert into client values(3,   "Stalam",   "Mariana",  0);
+insert into client values(4,   "Calin",   "Dan",  1);
+insert into client values(5,   "Sota",   "Stana",  1);
+insert into client values(6,   "Min",   "stan",  0);
+insert into client values(7,   "Dalin",   "Carra",  1);
+insert into client values(8,   "Atun",   "Samuel",  0);
+insert into client values(9,   "Amaniu",   "Diana",  1);
+insert into client values(10,  "Diliman",    "Dorel",  0);
+insert into client values(11,  "Caliman",    "George",  1);
+insert into client values(12,  "Stilan",    "Taniu",  0);
+insert into client values(13,  "George",    "Haniu",  0);
+insert into client values(14,  "Dinaman",    "Dilan",  1);
+insert into client values(15,  "Cotsan",    "Laur",  0);
+
+
+insert into produs values(1,  "Paine",  "A",  "100",  1.5);
+insert into produs values(2,  "Salam",  "A",  "100",  11.0);
+insert into produs values(3,  "Branza",  "A",  "1000",  15.0);
+insert into produs values(4,  "Zahar",  "A",  "1000",  3.0);
+insert into produs values(5,  "Faina",  "A",  "1000",  4.0);
+insert into produs values(6,  "Malai",  "A",  "1000",  4.0);
+insert into produs values(7,  "Orez",  "A",  "1000",  5.5);
+insert into produs values(8,  "Paste",  "A",  "500",  2.5);
+insert into produs values(9,  "Cereale",  "A",  "800",  6.5);
+insert into produs values(10,  "Mustar",  "A",  "500",  3.5);
+insert into produs values(11,  "Ulei",  "A",  "1000",  4.0);
+insert into produs values(12,  "Ciocolata",  "A",  "100",  3.5);
+insert into produs values(13,  "Gogoasa",  "A",  "100",  1.5);
+insert into produs values(14,  "Ceai",  "A",  "200",  2.0);
+insert into produs values(15,  "Praline",  "A",  "400",  10.0);
+insert into produs values(16,  "Chipsuri",  "A",  "600",  5.5);
+insert into produs values(17,  "Apa",  "A",  "2000",  2.5);
+insert into produs values(18,  "Cascaval",  "A",  "500",  5.5);
+insert into produs values(19,  "Icre",  "A",  "400",  2.5);
+insert into produs values(20,  "Fasole",  "A",  "1000",  4.5);
+insert into produs values(21,  "Ananas la cutie",  "A",  "1000",  5.0);
+insert into produs values(22,  "Somon",  "A",  "100",  6.5);
+insert into produs values(23,  "Iaurt simplu",  "A",  "300",  3.2);
+insert into produs values(24,  "Lapte",  "A",  "1000",  5.0);
+insert into produs values(25,  "Burete de vase",  "B",  "10",  1.0);
+insert into produs values(26,  "Detergent de vase",  "B",  "1000",  6.5);
+insert into produs values(27,  "Hartie de copt",  "B",  "100",  5.5);
+insert into produs values(28,  "Pasta de dinti",  "B",  "300",  5.5);
+insert into produs values(29,  "Sampon",  "B",  "400",  7.0);
+insert into produs values(30,  "Deodorant",  "B",  "300",  9.5);
+insert into produs values(31,  "Sapun lichid",  "B",  "600",  4.5);
+insert into produs values(32,  "Sapun bara",  "B",  "100",  1.0);
+insert into produs values(33,  "Parfum",  "B",  "700",  16.0);;
+insert into produs values(34,  "Periuta de dinti",  "B",  "100",  5.0);
+insert into produs values(35,  "Farfurii plastic",  "B",  "100",  5.0);
+insert into produs values(36,  "Rola de hartie",  "B",  "600",  11.5);
+insert into produs values(37,  "Balsam de rufe",  "B",  "800",  15.5);
+insert into produs values(38,  "Detergent de rufe",  "B",  "600",  11.0);
+insert into produs values(39,  "Clor",  "B",  "1000",  5.0);
+insert into produs values(40,  "Umbrela",  "B",  "300",  11.5);
+insert into produs values(41,  "Hartie igienica",  "B",  "300",  8.5);
+insert into produs values(42,  "Servetele umede",  "B",  "200",  3.0);
+insert into produs values(43,  "Servetele uscate",  "B",  "100",  2.5);
+insert into produs values(44,  "Vata",  "B",  "500",  4.5);
+insert into produs values(45,  "Odorizant de camera",  "B",  "400",  6.0);
+insert into produs values(46,  "Furculite de plastic",  "B",  "200",  6.0);
+insert into produs values(47,  "Pahare de plastic",  "B",  "200",  6.0);
+insert into produs values(48,  "Castron",  "B",  "100",  7.0);
+insert into produs values(49,  "Tigari",  "B",  "200",  27.0);
+insert into produs values(50,  "Balsam de par",  "B",  "500",  7.0);
+
+insert into data values(1,  '09:00:00',  "Vineri",  24,  10,  2,  2019);
+insert into data values(2,  '14:20:13',  "Luni",  24,  10,  2,  2019);
+insert into data values(3,  '12:10:24',  "Marti",  24,  10,  2,  2019);
+insert into data values(4,  '23:14:54',  "Joi",  24,  10,  2,  2019);
+insert into data values(5,  '11:15:13',  "Sambata",  24,  10,  2,  2019);
+insert into data values(6,  '11:35:14',  "Luni",  24,  10,  2,  2019);
+insert into data values(7,  '15:39:13',  "Vineri",  24,  10,  2,  2019);
+insert into data values(8,  '15:41:41',  "Duminica",  24,  10,  2,  2019);
+insert into data values(9,  '16:25:52',  "Sambata",  24,  10,  2,  2019);
+insert into data values(10,  '09:42:42',  "Vineri",  24,  10,  2,  2019);
+insert into data values(11,  '12:14:45',  "Joi",  24,  10,  2,  2019);
+insert into data values(12,  '14:11:52',  "Luni",  24,  10,  2,  2019);
+insert into data values(13,  '14:44:41',  "Vineri",  24,  10,  2,  2019);
+insert into data values(14,  '13:42:51',  "Sambata",  24,  10,  2,  2019);
+insert into data values(15,  '12:23:31',  "Vineri",  24,  10,  2,  2019);
+insert into data values(16,  '09:23:42',  "Luni",  24,  10,  2,  2019);
+insert into data values(17,  '12:42:32',  "Sambata",  24,  10,  2,  2019);
+insert into data values(18,  '16:44:52',  "Joi",  24,  10,  2,  2019);
+insert into data values(19,  '09:25:31',  "Luni",  24,  10,  2,  2019);
+insert into data values(20,  '18:55:22',  "Vineri",  24,  10,  2,  2019);
+
+insert into client_produs values(1, 1, 1);
+insert into client_produs values(2, 1, 2);
+insert into client_produs values(3, 3, 5);
+insert into client_produs values(4, 3, 9);
+insert into client_produs values(5, 5, 16);
+insert into client_produs values(6, 2, 21);
+insert into client_produs values(7, 2, 3);
+insert into client_produs values(8, 10, 7);
+insert into client_produs values(9, 10, 9);
+insert into client_produs values(10, 8, 3);
+insert into client_produs values(11, 8, 26);
+insert into client_produs values(12, 8, 31);
+insert into client_produs values(13, 8, 40);
+insert into client_produs values(14, 8, 12);
+insert into client_produs values(15, 7, 5);
+insert into client_produs values(16, 7, 10);
+insert into client_produs values(17, 7, 8);
+insert into client_produs values(18, 7, 17);
+insert into client_produs values(19, 7, 19);
+insert into client_produs values(20, 4, 10);
+insert into client_produs values(21, 11, 12);
+insert into client_produs values(22,  11, 13);
+insert into client_produs values(23, 11, 14);
+insert into client_produs values(24, 11, 19);
+insert into client_produs values(25, 5, 5);
+insert into client_produs values(26, 5, 48);
+insert into client_produs values(27, 6, 34);
+insert into client_produs values(28, 6, 25);
+insert into client_produs values(29, 6, 21);
+insert into client_produs values(30, 14, 2);
+insert into client_produs values(31, 14, 1);
+insert into client_produs values(32, 14, 12);
+insert into client_produs values(33, 14, 42);
+insert into client_produs values(34, 9, 1);
+insert into client_produs values(35, 9, 22);
+insert into client_produs values(36, 9, 34);
+insert into client_produs values(37, 10, 7);
+insert into client_produs values(38, 12, 35);
+insert into client_produs values(39, 12, 44);
+insert into client_produs values(40, 13, 19);
+insert into client_produs values(41, 13, 13);
+insert into client_produs values(42, 13, 15);
+insert into client_produs values(43, 14, 31);
+insert into client_produs values(44,  8, 17);
+insert into client_produs values(45,  9, 19);
+insert into client_produs values(46,  9, 9);
+insert into client_produs values(47, 15, 6);
+insert into client_produs values(48, 15, 8);
+insert into client_produs values(49, 15, 41);
+insert into client_produs values(50, 15, 37);
+insert into client_produs values(51, 15, 18);
+
+
+-- Id_tr Cheie_client 	Cheie_timp 	Cheie_produs Cheie_vanzator Numar_produse Total_lei Nr_casa
+insert into factura values(1,  1,   1,   3,  2,  12.5,  1);
+insert into factura values(2,  3,   18,  1,  2,  10.5,  2);
+insert into factura values(3,  5,   11,  1,  1,   5.5,  2);
+insert into factura values(4,  2,   3,   3,  2,    20,  1);
+insert into factura values(5,  10,  10,  4,  2,    12,  4);
+insert into factura values(6,  8,   12,  3,  5,    41,  3);
+insert into factura values(7,  7,   13,  2,  5,    15,  1);
+insert into factura values(8,  4,   8,   1,  1,   3.5,  2);
+insert into factura values(9,  11,   13, 1,  4,   9.5,  1);
+insert into factura values(10,  5,   9,  2,  2,    11,  1);
+insert into factura values(11,  6,   3,  3,  3,    11,  2);
+insert into factura values(12,  14,  14, 3,  4,    19,  3);
+insert into factura values(13,  9,   15, 4,  3,    13,  4);
+insert into factura values(14,  10,  11, 5,  1,  17.5,  3);
+insert into factura values(15,  12,  8,  1,  2,   9.5,  4);
+insert into factura values(16,  13,  20, 2,  3,    14,  4);
+insert into factura values(17,  14,  10, 2,  1,   4.5,  2);
+insert into factura values(18,  8,   14, 2,  1,   2.5,  2);
+insert into factura values(19,  9,   4,  7,  2,     9,  1);
+insert into factura values(20,  15,  2,  6,  5,    36,  1);
+
+select sum(produs.Pret_produs) as total from produs, client_produs where produs.Cheie_produs = client_produs.produs_FK group by Client_FK
